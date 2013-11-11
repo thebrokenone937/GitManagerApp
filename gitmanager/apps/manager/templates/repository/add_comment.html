@@ -1,0 +1,22 @@
+{% block content %}
+
+  {% if success  %}	
+  	  Comment submitted
+  	  
+  	  <script type="text/javascript">	
+  	    parent.loadComments();
+	  	parent.$.fn.colorbox.close();
+	  </script>
+  {% else %}
+  	{% if error %}
+  		<b>{{ error }}</b><br /><br />
+  	{% endif %}
+  	
+  	<form action="/manager/add-comment/{{ repository_id }}/{{ commit_hash }}/" method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="submit" value="Add Comment">
+  	</form>
+  {% endif %}
+  
+{% endblock %}

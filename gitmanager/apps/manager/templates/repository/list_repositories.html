@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% include "menu.html" %}
+  
+  <h1>Repositories</h1>
+  
+  {% if error %}
+  	<b>{{ error }}</b><br /><br />
+  {% endif %}	
+
+  {% if repositories %}	
+	  {% for repo in repositories %}
+			<a href="/manager/list-commits/{{ repo.repository_id.id }}/master">{{ repo.repository_id.name }}</a>, {{ repo.repository_id.git_url }} <br />
+	  {% endfor %}
+  {% endif %}
+  	
+  	
+{% endblock %}

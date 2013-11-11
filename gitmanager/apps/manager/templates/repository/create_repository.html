@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% include "menu.html" %}
+  
+  <h1>Create Repository</h1>
+  {% if success and commits %}	
+	  Repository Added
+  {% else %}
+  	{% if error %}
+  		<b>{{ error }}</b><br /><br />
+  	{% endif %}
+  	
+  	<form action="" method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="submit" value="Create Repo">
+  	</form>
+  {% endif %}
+  
+{% endblock %}

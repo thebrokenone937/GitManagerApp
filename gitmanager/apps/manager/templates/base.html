@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" />
+    <link rel="stylesheet" href="{% static "css/colorbox.css" %}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="{% static "js/jquery.colorbox.js" %}"></script>
+</head>
+<body>
+	<div id="container">
+		{% if request.user.is_authenticated %}
+			Welcome '{{ request.user.username }}' | <a href="/accounts/logout">Logout</a>
+		{% else %}
+			<a href="/accounts/login">Login</a> | <a href="/accounts/registration">Register</a>
+		{% endif %}
+		<hr />
+	
+	    {% block content %}{% endblock %}
+	    {% block footer %}
+	    <hr>
+	    <p>Thanks for visiting my site.</p>
+    </div>
+    {% endblock %}
+</body>
+</html>

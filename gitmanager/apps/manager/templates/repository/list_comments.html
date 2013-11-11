@@ -1,0 +1,16 @@
+{% if not error %}
+	{% for comment in comments %}
+		{{ comment.comment|linebreaks }}
+		<div class="commentsInfoBar">
+			<hr />
+			{{ comment.user_id.username }}, {{ comment.created }}
+			{% if comment.user_id.id == request.user.id %}
+			 | 
+			<a class="addcomment" href="/manager/edit-comment/{{ repository_id }}/{{ commit_hash }}/{{ comment.id }}">Edit Comment</a>
+			{% endif %}
+			<hr />
+		</div>
+	{% endfor %}
+{% else %}
+	<b>{{ error }}</b>
+{% endif %}

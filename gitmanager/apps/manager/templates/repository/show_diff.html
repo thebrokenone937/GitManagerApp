@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load tags %}
+
+{% block content %}
+  {% include "menu.html" %}
+  
+  <h1>Commit Diff</h1>	
+  {% if error %}
+  	<b>{{ error }}</b><br /><br />
+  {% else %}
+	  {% if commit_info %}
+	    <b>Commit id: </b>{{ commit_info.hexsha }} <br />
+	  	<b>Message: </b>{{ commit_info.message }} <br />
+	  	<b>Committer: </b>{{ commit_info.committer }} <br />
+	  	<b>Files Changed:</b><br />
+		{% for key, value in commit_info.stats.files.items %} 
+			{{ key }} - ({{ value }}) <br />
+		{% endfor %}
+	  {% endif %}
+	  
+	  <hr />
+	
+	  {% if diff %}	
+		  {{ diff|convert_colors|safe }}
+	  {% endif %}
+	  
+	  <hr />
+	  <h3>Comments</h3>
+	  <div id="commentsContainer">
+	      {% if comments %}
+		  	<a class='addcomment' href="/manager/add-comment/{{ repository_id }}/{{ commit_info.hexsha }}">Add Comment</a>
+		  {% endif %}
+		  	
+		  <div id="comments">	
+			  {% include "repository/list_comments.html" %}	  
+		  </div>
+		  
+	  	<a class='addcomment' href="/manager/add-comment/{{ repository_id }}/{{ commit_info.hexsha }}">Add Comment</a>
+	  </div>	
+
+  {% endif %}
+  
+  <script type="text/javascript">
+  	$(".addcomment").colorbox({iframe:true, width:"80%", height:"80%"});
+  	
+  	function loadComments()
+  	{
+  		$('#comments').html('Loading Comments...');
+  		
+  		$.ajax({
+		  url: "/manager/list-comments/{{ repository_id }}/{{ commit_hash }}",
+		  context: document.body
+		}).done(function(data) {
+		  $('#comments').html(data);
+		});
+  	}
+  </script>
+  
+{% endblock %}

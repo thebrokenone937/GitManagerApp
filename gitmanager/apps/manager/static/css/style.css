@@ -1,0 +1,23 @@
+body {
+	background: #234f32;
+	margin: 0;
+}
+
+#container {
+	min-height: 100%;
+	padding: 10px;
+	position: relative;
+	background: #fff;
+	width: 90%;
+	margin: 0 auto;
+}
+
+#commentsContainer {
+	width: 100%;
+	background: #eee;
+}
+
+.commentsInfoBar {
+	width: 100%;
+	background: #ccc;
+}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load tags %}
+
+{% block content %}
+  {% include "menu.html" %}
+  
+  <h1>Commits</h1>	
+
+  {% if error %}
+  	<b>{{ error }}</b><br /><br />
+  {% else %}
+  
+  	  <select name="branches" onchange="switchBranch(this.options[this.selectedIndex].value)">
+  	  	<option value='master'>Switch branch</option>
+  	  	{% for branch in branches %}
+  	  		<option value='{{ branch }}'>{{ branch }}</option>
+  	  	{% endfor %}
+  	  </select>
+  	  
+  	  <br /><br />	
+	
+	  {% if commits %}	
+		  {% for commit in commits %}
+				<a href="/manager/show-diff/{{ repository_id }}/{{ commit.hexsha }}">{{ commit.message|uni }}</a>, {{ commit.committer.name|uni }}, &lt;{{ commit.committer.email|uni }}&gt; <br />
+				
+				<span style="color #ccc;">
+				<i>{{ commit.committed_date|format_commit_date }}</i>
+				<br />
+				{{ commit.stats.files|length }} files modified 
+				</span>
+				<br /><br />
+		  {% endfor %}
+	  {% endif %}
+
+  {% endif %}
+  
+  <script type="text/javascript">
+  	function switchBranch(branch)
+  	{
+  		location.href = '/manager/list-commits/{{ repository_id }}/' + branch;
+  	}
+  </script>
+  
+{% endblock %}

@@ -1,0 +1,24 @@
+Done:
+
+Register Page
+Login Page
+Logout Page
+Forgot Password Page
+Reset Password Page
+Add Repository
+List all commits in repository
+Show diff from last commit
+List comments on commit
+Add comment to commit
+Add ability to switch branches on list repositories page
+
+TODO:
+
+Add users to repository
+Review commit (mark as reviewed & accepted)
+Mail latest commit to repository users (probably better implemented in a hook)
+Request a review and mail to reviewer
+Make Files clickable that they bring you straight to the diff with hashtag link on
+show diff page
+Add unit tests
+Add repositories under ssh ability
