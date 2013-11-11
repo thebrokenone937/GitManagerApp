@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from gitmanager.apps.manager.views.registration import *
-from gitmanager.apps.contact.views import *
 from gitmanager.apps.manager.views.repository import *
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
