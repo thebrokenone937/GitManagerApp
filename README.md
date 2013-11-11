@@ -8,7 +8,7 @@ it into a simple code review tool like Gerrit or ReviewBoard.
 
 I need to add unit tests for this application also.
 
-I need to allow for adding repositories that under ssh.
+I need to allow for adding repositories that are under ssh.
 
 
 There are a couple of things you need to do to get this working:
