@@ -256,7 +256,7 @@ def create_repository(request):
         form = AddRepositoryForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            git_url = form.cleaned_data['git_url'] #'/home/dan/git/repositories/test-project.git'
+            git_url = form.cleaned_data['git_url']
             
             name_check = Repositories.objects.filter(name=name)
             git_url_check = Repositories.objects.filter(git_url=git_url)
